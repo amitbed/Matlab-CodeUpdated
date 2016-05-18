@@ -1,0 +1,33 @@
+<!-- saved from url=(0014)about:internet -->
+<div class="dead">
+<pre class="code">
+<span class="srcline"><span class="lineno"><a href="2,1" id="srcline1"> 1</a></span><span class="line"><span class="keyword">classdef</span> RateController &lt; matlab.System</span></span>
+<span class="srcline"><span class="lineno"><a href="2,2" id="srcline2"> 2</a></span><span class="line">    <span class="keyword">methods</span> (Access = protected)</span></span>
+</pre>
+</div>
+<pre class="code">
+<span class="srcline"><span class="lineno"><a href="2,3" id="srcline3"> 3</a></span><span class="line">        <span class="keyword">function</span> setupImpl(<span class="var type1" id="S4T70U15">obj</span>)</span></span>
+<span class="srcline"><span class="lineno"><a href="2,4" id="srcline4"> 4</a></span><span class="line">            <span class="comment">% Implement tasks that need to be performed only once, </span></span></span>
+<span class="srcline"><span class="lineno"><a href="2,5" id="srcline5"> 5</a></span><span class="line">            <span class="comment">% such as pre-computed constants.</span></span></span>
+<span class="srcline"><span class="lineno"><a href="2,6" id="srcline6"> 6</a></span><span class="line">            ssSetInputPortDataType(<span class="var type1" id="S4T70U19">obj</span>,<span class="mxinfo" id="T1:U3">0</span>,<span class="message error" id="M1F2C">SS_DOUBLE</span>);</span></span>
+<span class="srcline"><span class="lineno"><a href="2,7" id="srcline7"> 7</a></span><span class="line">            ssSetInputPortDataType(<span class="var type0" id="S4T0U26">obj</span>,1,SS_DOUBLE);</span></span>
+<span class="srcline"><span class="lineno"><a href="2,8" id="srcline8"> 8</a></span><span class="line">        <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="2,9" id="srcline9"> 9</a></span><span class="line"></span></span>
+</pre>
+<div class="dead">
+<pre class="code">
+<span class="srcline"><span class="lineno"><a href="2,10" id="srcline10">10</a></span><span class="line">        <span class="keyword">function</span> stepImpl(obj,yaw, pitch, roll)</span></span>
+<span class="srcline"><span class="lineno"><a href="2,11" id="srcline11">11</a></span><span class="line">            <span class="keyword">if</span> coder.target(<span class="string">'Rtw'</span>)</span></span>
+<span class="srcline"><span class="lineno"><a href="2,12" id="srcline12">12</a></span><span class="line">                coder.cinclude(<span class="string">'MyCopter.h'</span>);</span></span>
+<span class="srcline"><span class="lineno"><a href="2,13" id="srcline13">13</a></span><span class="line">                </span></span>
+<span class="srcline"><span class="lineno"><a href="2,14" id="srcline14">14</a></span><span class="line">                coder.ceval(<span class="string">'SET_YAW_RATE_TARGET'</span>,  yaw);                </span></span>
+<span class="srcline"><span class="lineno"><a href="2,15" id="srcline15">15</a></span><span class="line">                coder.ceval(<span class="string">'SET_PITCH_RATE_TARGET'</span>,pitch);</span></span>
+<span class="srcline"><span class="lineno"><a href="2,16" id="srcline16">16</a></span><span class="line">                coder.ceval(<span class="string">'SET_ROLL_RATE_TARGET'</span>, roll);</span></span>
+<span class="srcline"><span class="lineno"><a href="2,17" id="srcline17">17</a></span><span class="line">            <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="2,18" id="srcline18">18</a></span><span class="line">        <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="2,19" id="srcline19">19</a></span><span class="line">    <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="2,20" id="srcline20">20</a></span><span class="line"><span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="2,21" id="srcline21">21</a></span><span class="line"> </span></span>
+<span class="srcline"><span class="lineno"><a href="2,22" id="srcline22">22</a></span><span class="line"> </span></span>
+</pre>
+</div>

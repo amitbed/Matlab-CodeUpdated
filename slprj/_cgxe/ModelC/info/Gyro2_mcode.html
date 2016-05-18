@@ -1,0 +1,22 @@
+<!-- saved from url=(0014)about:internet -->
+<div class="dead">
+<pre class="code">
+<span class="srcline"><span class="lineno"><a href="2,1" id="srcline1"> 1</a></span><span class="line"><span class="keyword">classdef</span> Gyro &lt; matlab.System </span></span>
+<span class="srcline"><span class="lineno"><a href="2,2" id="srcline2"> 2</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="2,3" id="srcline3"> 3</a></span><span class="line">   <span class="keyword">methods</span> (Access = protected)</span></span>
+<span class="srcline"><span class="lineno"><a href="2,4" id="srcline4"> 4</a></span><span class="line">       <span class="keyword">function</span> [<span class="var type0" id="S4T0U13">x</span> <span class="var type0" id="S5T0U14">y</span> <span class="var type0" id="S6T0U15">z</span>] = stepImpl(~)</span></span>
+<span class="srcline"><span class="lineno"><a href="2,5" id="srcline5"> 5</a></span><span class="line">         <span class="comment">%x = 0.0;</span></span></span>
+<span class="srcline"><span class="lineno"><a href="2,6" id="srcline6"> 6</a></span><span class="line">         <span class="var type0" id="S4T0U21">x</span> = coder.ceval(<span class="string">'GET_GYRO_X'</span>);</span></span>
+<span class="srcline"><span class="lineno"><a href="2,7" id="srcline7"> 7</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="2,8" id="srcline8"> 8</a></span><span class="line">         <span class="comment">%y = 0.0;</span></span></span>
+<span class="srcline"><span class="lineno"><a href="2,9" id="srcline9"> 9</a></span><span class="line">         <span class="var type0" id="S5T0U29">y</span> = coder.ceval(<span class="string">'GET_GYRO_Y'</span>);</span></span>
+<span class="srcline"><span class="lineno"><a href="2,10" id="srcline10">10</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="2,11" id="srcline11">11</a></span><span class="line">         <span class="comment">%z = 0.0;</span></span></span>
+<span class="srcline"><span class="lineno"><a href="2,12" id="srcline12">12</a></span><span class="line">         <span class="var type0" id="S6T0U37">z</span> = coder.ceval(<span class="string">'GET_GYRO_Z'</span>);</span></span>
+<span class="srcline"><span class="lineno"><a href="2,13" id="srcline13">13</a></span><span class="line">      <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="2,14" id="srcline14">14</a></span><span class="line">   <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="2,15" id="srcline15">15</a></span><span class="line"><span class="keyword">end</span> </span></span>
+<span class="srcline"><span class="lineno"><a href="2,16" id="srcline16">16</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="2,17" id="srcline17">17</a></span><span class="line"> </span></span>
+</pre>
+</div>

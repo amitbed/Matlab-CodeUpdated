@@ -1,0 +1,51 @@
+CC     = "C:\Program Files\MATLAB\R2014a\sys\lcc64\lcc64\bin\lcc64.exe"
+LD     = "C:\Program Files\MATLAB\R2014a\sys\lcc64\lcc64\bin\lcclnk64.exe"
+LIBCMD = "C:\Program Files\MATLAB\R2014a\sys\lcc64\lcc64\bin\lcclib64.exe"
+CFLAGS = -dll -noregistrylookup  -c -Zp8 -DLCC_WIN64 -DMATLAB_MEX_FILE -DMX_COMPAT_32 -nodeclspec 
+LDFLAGS = -s -dll -L"C:\Program Files\MATLAB\R2014a\sys\lcc64\lcc64\lib64" -entry LibMain -map sfun.map 
+LIBFLAGS = 
+
+OBJECTS = \
+	"lccstub.obj"\
+	"ModelD_cgxe.obj"\
+	"m_jGJeUnXowSnrBTmm3TGSwB.obj"\
+	"m_JxMy01r8DjVbsfi8ofMJEB.obj"\
+	"m_I2qdc3gRUXffgupHtEi3LB.obj"\
+	"m_Ppe0kcJTWAFj083kyKBRqF.obj"\
+	"m_t0r9JzKNkkWY1vKyCq46gE.obj"\
+	"m_NEQWUV6xi4bxN5U0gajE8B.obj"\
+	"ModelD_cgxe_registry.obj"\
+	"ModelD_cgxe.def"\
+	"C:\Program Files\MATLAB\R2014a\extern\lib\win64\microsoft\libmwblas.lib"\
+	"C:\Program Files\MATLAB\R2014a\extern\lib\win64\microsoft\libmx.lib"\
+	"C:\Program Files\MATLAB\R2014a\extern\lib\win64\microsoft\libmex.lib"\
+	"C:\Program Files\MATLAB\R2014a\extern\lib\win64\microsoft\libmat.lib"\
+	"C:\Program Files\MATLAB\R2014a\extern\lib\win64\microsoft\libfixedpoint.lib"\
+	"C:\Program Files\MATLAB\R2014a\extern\lib\win64\microsoft\libut.lib"\
+	"C:\Program Files\MATLAB\R2014a\extern\lib\win64\microsoft\libmwmathutil.lib"\
+	"C:\Program Files\MATLAB\R2014a\extern\lib\win64\microsoft\libemlrt.lib"\
+	"C:\Program Files\MATLAB\R2014a\lib\win64\libippmwipt.lib"\
+
+INCLUDE_PATH= -I"C:\Program Files\MATLAB\R2014a\sys\lcc64\lcc64\include64"  -I"C:\Program Files\MATLAB\R2014a\extern\include"  -I"C:\Program Files\MATLAB\R2014a\simulink\include"  -I"C:\Program Files\MATLAB\R2014a\rtw\c\src" 
+ 
+
+ModelD_cgxe.mexw64 : $(MAKEFILE) $(OBJECTS)
+	$(LD) $(LDFLAGS) -o ModelD_cgxe.mexw64 @ModelD_cgxe.lmko
+lccstub.obj :	"C:\Program Files\MATLAB\R2014a\sys\lcc64\lcc64\mex\lccstub.c"
+	$(CC) $(CFLAGS) $(INCLUDE_PATH) "C:\Program Files\MATLAB\R2014a\sys\lcc64\lcc64\mex\lccstub.c"
+ModelD_cgxe.obj :	"ModelD_cgxe.c"
+	$(CC) $(CFLAGS) $(INCLUDE_PATH) "ModelD_cgxe.c"
+m_jGJeUnXowSnrBTmm3TGSwB.obj :	"m_jGJeUnXowSnrBTmm3TGSwB.c"
+	$(CC) $(CFLAGS) $(INCLUDE_PATH) "m_jGJeUnXowSnrBTmm3TGSwB.c"
+m_JxMy01r8DjVbsfi8ofMJEB.obj :	"m_JxMy01r8DjVbsfi8ofMJEB.c"
+	$(CC) $(CFLAGS) $(INCLUDE_PATH) "m_JxMy01r8DjVbsfi8ofMJEB.c"
+m_I2qdc3gRUXffgupHtEi3LB.obj :	"m_I2qdc3gRUXffgupHtEi3LB.c"
+	$(CC) $(CFLAGS) $(INCLUDE_PATH) "m_I2qdc3gRUXffgupHtEi3LB.c"
+m_Ppe0kcJTWAFj083kyKBRqF.obj :	"m_Ppe0kcJTWAFj083kyKBRqF.c"
+	$(CC) $(CFLAGS) $(INCLUDE_PATH) "m_Ppe0kcJTWAFj083kyKBRqF.c"
+m_t0r9JzKNkkWY1vKyCq46gE.obj :	"m_t0r9JzKNkkWY1vKyCq46gE.c"
+	$(CC) $(CFLAGS) $(INCLUDE_PATH) "m_t0r9JzKNkkWY1vKyCq46gE.c"
+m_NEQWUV6xi4bxN5U0gajE8B.obj :	"m_NEQWUV6xi4bxN5U0gajE8B.c"
+	$(CC) $(CFLAGS) $(INCLUDE_PATH) "m_NEQWUV6xi4bxN5U0gajE8B.c"
+ModelD_cgxe_registry.obj :	"ModelD_cgxe_registry.c"
+	$(CC) $(CFLAGS) $(INCLUDE_PATH) "ModelD_cgxe_registry.c"
