@@ -1,0 +1,3 @@
+LIBRARY slident_sfun.lib
+EXPORTS
+mexFunction
