@@ -1,0 +1,205 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>MavlinkMessageSender</title><meta name="generator" content="MATLAB 8.3"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2016-03-24"><meta name="DC.source" content="MavlinkMessageSender.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#3">Register number of input and output ports</a></li><li><a href="#4">Setup functional port properties to dynamically</a></li><li><a href="#5">inherited.</a></li><li><a href="#6">Set block sample time to [0.1 0]</a></li><li><a href="#7">Set the block simStateCompliance to default (i.e., same as a built-in block)</a></li><li><a href="#8">Register methods</a></li><li><a href="#11">Setup Dwork</a></li><li><a href="#14">Initialize Dwork</a></li></ul></div><pre class="codeinput"><span class="keyword">function</span> mavlinkMessageSend(block)
+<span class="comment">% Level-2 MATLAB file S-Function for unit delay demo.</span>
+
+
+  setup(block);
+
+<span class="comment">%endfunction</span>
+
+<span class="keyword">function</span> setup(block)
+</pre><pre class="codeinput">  block.NumDialogPrms  = 1;
+</pre><h2>Register number of input and output ports<a name="3"></a></h2><pre class="codeinput">  block.NumInputPorts  = 1;
+  block.NumOutputPorts = 0;
+</pre><h2>Setup functional port properties to dynamically<a name="4"></a></h2><h2>inherited.<a name="5"></a></h2><pre class="codeinput">  block.SetPreCompInpPortInfoToDynamic;
+  block.SetPreCompOutPortInfoToDynamic;
+
+  block.InputPort(1).Dimensions        = 1;
+  block.InputPort(1).DirectFeedthrough = false;
+
+  <span class="comment">%block.OutputPort(1).Dimensions       = 1;</span>
+</pre><h2>Set block sample time to [0.1 0]<a name="6"></a></h2><pre class="codeinput">  block.SampleTimes = [0.1 0];
+</pre><h2>Set the block simStateCompliance to default (i.e., same as a built-in block)<a name="7"></a></h2><pre class="codeinput">  block.SimStateCompliance = <span class="string">'DefaultSimState'</span>;
+</pre><h2>Register methods<a name="8"></a></h2><pre class="codeinput">  block.RegBlockMethod(<span class="string">'PostPropagationSetup'</span>,    @DoPostPropSetup);
+  block.RegBlockMethod(<span class="string">'InitializeConditions'</span>,    @InitConditions);
+  block.RegBlockMethod(<span class="string">'Outputs'</span>,                 @Output);
+  block.RegBlockMethod(<span class="string">'Update'</span>,                  @Update);
+
+<span class="comment">%endfunction</span>
+</pre><pre class="codeinput"><span class="keyword">function</span> DoPostPropSetup(block)
+</pre><h2>Setup Dwork<a name="11"></a></h2><pre class="codeinput">  block.NumDworks = 1;
+  block.Dwork(1).Name = <span class="string">'x0'</span>;
+  block.Dwork(1).Dimensions      = 1;
+  block.Dwork(1).DatatypeID      = 0;
+  block.Dwork(1).Complexity      = <span class="string">'Real'</span>;
+  block.Dwork(1).UsedAsDiscState = true;
+
+<span class="comment">%endfunction</span>
+</pre><pre class="codeinput"><span class="keyword">function</span> InitConditions(block)
+</pre><h2>Initialize Dwork<a name="14"></a></h2><pre class="codeinput">  block.Dwork(1).Data = block.DialogPrm(1).Data;
+
+<span class="comment">%endfunction</span>
+</pre><pre class="codeinput"><span class="keyword">function</span> Output(block)
+
+  <span class="keyword">if</span> coder.target(<span class="string">'MATLAB'</span>)
+  <span class="keyword">else</span>
+    ceval(<span class="string">'copter.gcs_send_text'</span>,<span class="string">'MAV_SEVERITY_INFO'</span>, <span class="string">'"message from MATLAB"'</span>);
+  <span class="keyword">end</span>
+  <span class="comment">%block.OutputPort(1).Data = block.Dwork(1).Data;</span>
+
+<span class="comment">%endfunction</span>
+
+<span class="keyword">function</span> Update(block)
+
+  block.Dwork(1).Data = block.InputPort(1).Data;
+
+<span class="comment">%endfunction</span>
+</pre><pre class="codeoutput error">Error using MavlinkMessageSender (line 5)
+Not enough input arguments.
+</pre><p class="footer">Copyright 1990-2009 The MathWorks, Inc.<br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2014a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+function mavlinkMessageSend(block)
+% Level-2 MATLAB file S-Function for unit delay demo.
+%   Copyright 1990-2009 The MathWorks, Inc.
+
+  setup(block);
+  
+%endfunction
+
+function setup(block)
+  
+  block.NumDialogPrms  = 1;
+  
+  %% Register number of input and output ports
+  block.NumInputPorts  = 1;
+  block.NumOutputPorts = 0;
+
+  %% Setup functional port properties to dynamically
+  %% inherited.
+  block.SetPreCompInpPortInfoToDynamic;
+  block.SetPreCompOutPortInfoToDynamic;
+ 
+  block.InputPort(1).Dimensions        = 1;
+  block.InputPort(1).DirectFeedthrough = false;
+  
+  %block.OutputPort(1).Dimensions       = 1;
+  
+  %% Set block sample time to [0.1 0]
+  block.SampleTimes = [0.1 0];
+  
+  %% Set the block simStateCompliance to default (i.e., same as a built-in block)
+  block.SimStateCompliance = 'DefaultSimState';
+
+  %% Register methods
+  block.RegBlockMethod('PostPropagationSetup',    @DoPostPropSetup);
+  block.RegBlockMethod('InitializeConditions',    @InitConditions);  
+  block.RegBlockMethod('Outputs',                 @Output);  
+  block.RegBlockMethod('Update',                  @Update);  
+  
+%endfunction
+
+function DoPostPropSetup(block)
+
+  %% Setup Dwork
+  block.NumDworks = 1;
+  block.Dwork(1).Name = 'x0'; 
+  block.Dwork(1).Dimensions      = 1;
+  block.Dwork(1).DatatypeID      = 0;
+  block.Dwork(1).Complexity      = 'Real';
+  block.Dwork(1).UsedAsDiscState = true;
+
+%endfunction
+
+function InitConditions(block)
+
+  %% Initialize Dwork
+  block.Dwork(1).Data = block.DialogPrm(1).Data;
+  
+%endfunction
+
+function Output(block)
+
+  if coder.target('MATLAB')
+  else
+    ceval('copter.gcs_send_text','MAV_SEVERITY_INFO', '"message from MATLAB"');
+  end
+  %block.OutputPort(1).Data = block.Dwork(1).Data;
+  
+%endfunction
+
+function Update(block)
+
+  block.Dwork(1).Data = block.InputPort(1).Data;
+  
+%endfunction
+
+
+##### SOURCE END #####
+--></body></html>
