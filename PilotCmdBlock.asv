@@ -1,0 +1,49 @@
+classdef PilotCmdBlock < matlab.System &...
+     matlab.system.mixin.Nondirect 
+   
+   properties
+      InitialOutput = 0;
+   end
+   properties (Nontunable)
+      inc = 1;
+   end
+   properties (DiscreteState)
+      count;
+   end
+
+   methods (Access = protected)
+      function validatePropertiesImpl(obj)
+         if ((numel(obj.inc)>1) || (obj.inc <= 0))
+            error('inc of delays must be positive non-zero scalar value.');
+         end
+         if (numel(obj.InitialOutput)>1)
+            error('Initial Output must be scalar value.');
+         end
+      end
+
+      function setupImpl(obj)
+         obj.count = obj.InitialOutput;
+      end
+      
+      function resetImpl(obj)
+         obj.count = obj.InitialOutput;
+      end
+      
+      function [y] = outputImpl(obj)
+         %y = obj.count;
+         y = 0;
+         
+         v = struct( 'x',0);
+         %v = coder.opaque('Vector3f');
+         v = coder.ceval('copter.ins.get_gyro', int32(0));
+         y = v.x;
+      end
+      function updateImpl(obj)
+         obj.count = obj.count + obj.inc;
+      end
+      function flag = isInputDirectFeedthroughImpl(~,~)
+         flag = false;
+      end
+   end
+end 
+
